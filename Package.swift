@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "unstandard-ui",
     platforms: [
-        .macOS(.v12),
+        .macOS(.v10_15),
         .iOS(.v13),
         .tvOS(.v13),
         .watchOS(.v6),
@@ -38,6 +38,7 @@ let package = Package(
             name: "Section",
             dependencies: [
                 .product(name: "unstandard", package: "unstandard"),
+                
             ]),
         
         
