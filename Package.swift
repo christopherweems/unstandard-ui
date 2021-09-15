@@ -17,6 +17,10 @@ let package = Package(
             name: "UnstandardUI",
             targets: ["UnstandardUI"]),
         
+        .library(
+            name: "Section",
+            targets: ["Section"]),
+        
     ],
     dependencies: [
         .package(url: "https://github.com/christopherweems/unstandard.git", from: "0.3.3"),
@@ -30,9 +34,22 @@ let package = Package(
                 
             ]),
         
+        .target(
+            name: "Section",
+            dependencies: [
+                .product(name: "unstandard", package: "unstandard"),
+            ]),
+        
+        
+        // tests
+        
         .testTarget(
             name: "UnstandardUITests",
             dependencies: ["UnstandardUI"]),
+        
+        .testTarget(
+            name: "SectionTests",
+            dependencies: ["Section"]),
         
     ]
     
