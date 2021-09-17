@@ -28,6 +28,24 @@ extension View {
 }
 
 
+// MARK: Creating a Stack from a group
+
+extension View {
+    /// Usage: Group { .. } .stack(.vertical)
+    @ViewBuilder public func stack(_ axis: Axis) -> some View {
+        switch axis {
+        case .horizontal:
+            HStack(content: { self })
+            
+        case .vertical:
+            VStack(content: { self })
+            
+        }
+    }
+    
+}
+
+
 // MARK: - Type Erasure
 
 extension View {
