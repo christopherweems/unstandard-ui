@@ -46,6 +46,19 @@ extension View {
 }
 
 
+// MARK: - Attaching a long press gesture with a configuration
+
+extension View {
+    public func onLongPressGesture(performConfiguration configuration: LongPressGestureConfiguration) -> some View {
+        self.onLongPressGesture(minimumDuration: configuration.minimumDuration,
+                                maximumDistance: configuration.maximumDistance,
+                                perform: configuration.action,
+                                onPressingChanged: configuration.onPressingChanged)
+    }
+    
+}
+
+
 // MARK: - Type Erasure
 
 extension View {
