@@ -9,6 +9,16 @@ import struct SwiftUI.Binding
 import struct CoreGraphics.CGPoint
 import struct CoreGraphics.CGFloat
 
+extension Binding {
+    public static func ??<T>(lhs: Self, rhs: T) -> Binding<T> where Value == Optional<T> {
+        Binding<T>(
+            get: { lhs.wrappedValue ?? rhs },
+            set: { lhs.wrappedValue = $0 }
+        )
+    }
+    
+}
+
 
 // MARK: - Binding<Bool>
 
