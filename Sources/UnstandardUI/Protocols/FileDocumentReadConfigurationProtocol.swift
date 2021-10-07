@@ -9,6 +9,7 @@ import struct SwiftUI.FileDocumentReadConfiguration
 import UniformTypeIdentifiers
 
 @available(macOS 11, iOS 14, tvOS 14, watchOS 7, *)
+@available(tvOS, unavailable)
 public protocol FileDocumentReadConfigurationProtocol {
     /// The expected uniform type of the file contents.
     var contentType: UTType { get }
@@ -18,5 +19,6 @@ public protocol FileDocumentReadConfigurationProtocol {
     
 }
 
-@available(macOS 11, iOS 14, tvOS 14, watchOS 7, *)
+@available(macOS 11, iOS 14, watchOS 7, *)
+@available(tvOS, unavailable)
 extension FileDocumentReadConfiguration: FileDocumentReadConfigurationProtocol { }

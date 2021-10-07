@@ -48,6 +48,8 @@ extension View {
 
 // MARK: - Attaching a long press gesture with a configuration
 
+@available(tvOS 14, *)
+@available(tvOS, unavailable)
 extension View {
     public func onLongPressGesture(performConfiguration configuration: LongPressGestureConfiguration) -> some View {
         self.onLongPressGesture(minimumDuration: configuration.minimumDuration,

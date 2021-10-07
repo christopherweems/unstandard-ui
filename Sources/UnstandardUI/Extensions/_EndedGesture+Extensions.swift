@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(tvOS, unavailable)
 extension _EndedGesture where Content == TapGesture {
     public init() {
         self = TapGesture().onEnded { }
