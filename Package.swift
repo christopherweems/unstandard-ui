@@ -30,12 +30,20 @@ let package = Package(
         .target(
             name: "UnstandardUI",
             dependencies: [
+                "FontReader",
                 .product(name: "unstandard", package: "unstandard"),
                 
             ]),
         
         .target(
             name: "Section",
+            dependencies: [
+                .product(name: "unstandard", package: "unstandard"),
+                
+            ]),
+        
+        .target(
+            name: "FontReader",
             dependencies: [
                 .product(name: "unstandard", package: "unstandard"),
                 
