@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(macOS 11.0, *)
 extension Image {
     public enum Name {
         case system(name: String)
