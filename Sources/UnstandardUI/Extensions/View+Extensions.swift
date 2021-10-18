@@ -45,6 +45,15 @@ extension View {
     
 }
 
+// MARK: - Setting Font Weight
+
+extension View where Body == Text {
+    public func fontWeight(_ weight: Font.Weight) -> Text {
+        body.fontWeight(weight)
+    }
+    
+}
+
 
 // MARK: - Attaching a long press gesture with a configuration
 
