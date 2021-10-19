@@ -21,6 +21,9 @@ let package = Package(
             name: "Section",
             targets: ["Section"]),
         
+        .library(name: "HapticFeedbackGenerator",
+                 targets: ["HapticFeedbackGenerator"]),
+        
     ],
     dependencies: [
         .package(url: "https://github.com/christopherweems/unstandard.git", from: "0.3.3"),
@@ -33,6 +36,10 @@ let package = Package(
                 .product(name: "unstandard", package: "unstandard"),
                 
             ]),
+        
+        .target(
+            name: "HapticFeedbackGenerator"
+        ),
         
         .target(
             name: "Section",
