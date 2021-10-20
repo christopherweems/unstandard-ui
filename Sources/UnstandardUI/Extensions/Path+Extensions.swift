@@ -21,3 +21,23 @@ extension Path {
     }
     
 }
+
+
+// MARK: - Upsizing Paths sized within a square unit
+
+extension Path {
+    public mutating func transform(scalingUnitPathTo frame: CGRect) {
+        precondition(boundingRect.maxX <= 1 && boundingRect.maxY <= 1, "path must be smaller than (1,1)")
+        self = self.applying(
+                CGAffineTransform(scaleX: frame.width, y: frame.height)
+                    .translatedBy(x: frame.origin.x, y: frame.origin.y)
+            )
+    }
+    
+    public func applying(transformScalingUnitPathTo frame: CGRect) -> Path {
+        var new = self
+        new.transform(scalingUnitPathTo: frame)
+        return new
+    }
+    
+}
