@@ -5,9 +5,14 @@ Extensions & helpers for SwiftUI.
 
 ## Libraries
 
-### UnstandardUI
+### unstandardUI
 
 General SwiftUI additions. 
+
+
+### HapticFeedbackGenerator
+
+Type-safe Haptic feedback generator accessible from SwiftUI Environment
 
 
 ### Section
