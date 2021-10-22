@@ -27,6 +27,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/christopherweems/unstandard.git", from: "0.3.3"),
+        .package(url: "https://github.com/christopherweems/Resultto.git", from: "0.2.1"),
         
     ],
     targets: [
@@ -38,8 +39,11 @@ let package = Package(
             ]),
         
         .target(
-            name: "HapticFeedbackGenerator"
-        ),
+            name: "HapticFeedbackGenerator",
+            dependencies: [
+                .product(name: "Resultto", package: "Resultto"),
+                
+            ]),
         
         .target(
             name: "Section",
