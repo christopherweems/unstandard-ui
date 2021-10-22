@@ -14,8 +14,8 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "UnstandardUI",
-            targets: ["UnstandardUI"]),
+            name: "unstandardUI",
+            targets: ["unstandardUI"]),
         
         .library(
             name: "Section",
@@ -32,7 +32,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "UnstandardUI",
+            name: "unstandardUI",
             dependencies: [
                 .product(name: "unstandard", package: "unstandard"),
                 
@@ -56,8 +56,8 @@ let package = Package(
         // tests
         
         .testTarget(
-            name: "UnstandardUITests",
-            dependencies: ["UnstandardUI"]),
+            name: "unstandardUITests",
+            dependencies: ["unstandardUI"]),
         
         .testTarget(
             name: "SectionTests",
