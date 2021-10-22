@@ -5,6 +5,7 @@
 //  Created by Christopher Weems on 10/18/21.
 //
 
+#if canImport(UIKit)
 import SwiftUI
 
 public protocol HapticView: View {
@@ -19,3 +20,5 @@ extension HapticView {
     }
     
 }
+
+#endif

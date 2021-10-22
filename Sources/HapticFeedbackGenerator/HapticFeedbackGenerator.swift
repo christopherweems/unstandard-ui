@@ -5,6 +5,7 @@
 //  Created by Christopher Weems on 10/18/21.
 //
 
+#if canImport(UIKit)
 import UIKit
 import Resultto
 
@@ -138,3 +139,5 @@ extension UINotificationFeedbackGenerator.FeedbackType {
     }
     
 }
+
+#endif

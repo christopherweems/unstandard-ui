@@ -5,6 +5,7 @@
 //  Created by Christopher Weems on 10/18/21.
 //
 
+#if canImport(UIKit)
 import typealias Foundation.TimeInterval
 
 public protocol HapticFeedbackEvent {
@@ -29,3 +30,5 @@ extension HapticFeedbackEvent {
     }
     
 }
+
+#endif
