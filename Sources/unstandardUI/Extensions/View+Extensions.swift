@@ -72,6 +72,18 @@ extension View {
 
 // MARK: -
 
+extension View {
+    // TODO: Test method & rename
+    public func frame(_frame frame: CGRect, alignment: Alignment = .center) -> some View {
+        self.frame(width: frame.width, height: frame.height, alignment: alignment)
+            .offset(x: frame.origin.x, y: frame.origin.y)
+    }
+    
+}
+
+
+// MARK: -
+
 @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
 extension View {
     public func safeAreaInset(top: CGFloat = 0, leading: CGFloat = 0, bottom: CGFloat = 0, trailing: CGFloat = 0) -> some View {
