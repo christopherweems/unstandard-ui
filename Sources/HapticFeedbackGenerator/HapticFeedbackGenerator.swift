@@ -5,6 +5,7 @@
 //
 
 import UIKit
+import Resultto
 
 public struct HapticFeedbackGenerator {
     private static let mediumImpactGenerator = UIImpactFeedbackGenerator(style: .medium)
@@ -21,6 +22,19 @@ public struct HapticFeedbackGenerator {
         case notification(_ type: NotificationType)
         case selectionChange
         
+    }
+    
+    public func prepare(for event: HapticFeedbackEvent) {
+        switch event.feedbackDescription {
+        case let .impact(style, _):
+            self.prepareImpactHaptic(style: style)
+            
+        case .notification:
+            Self.notificationFeedbackGenerator.prepare()
+            
+        case .selectionChange:
+            Self.selectionFeedbackGenerator.prepare()
+        }
     }
     
     public func provideFeedback(for event: HapticFeedbackEvent) {
@@ -60,27 +74,39 @@ extension HapticFeedbackGenerator.FeedbackDescription {
 }
 
 extension HapticFeedbackGenerator {
-    private func performImpactHaptic(style: FeedbackDescription.ImpactStyle, intensity: Double) {
+    @SingleResult
+    private static func impactGenerator(for style: FeedbackDescription.ImpactStyle) -> UIImpactFeedbackGenerator {
         switch style {
         case .medium:
-            Self.mediumImpactGenerator.impactOccurred(intensity: intensity)
+            mediumImpactGenerator
             
         case .light:
-            Self.lightImpactGenerator.impactOccurred(intensity: intensity)
+            lightImpactGenerator
             
         case .heavy:
-            Self.heavyImpactGenerator.impactOccurred(intensity: intensity)
+            heavyImpactGenerator
             
         case .rigid:
-            Self.rigidImpactGenerator.impactOccurred(intensity: intensity)
+            rigidImpactGenerator
             
         case .soft:
-            Self.softImpactGenerator.impactOccurred(intensity: intensity)
+            softImpactGenerator
             
         }
         
     }
     
+    private func prepareImpactHaptic(style: FeedbackDescription.ImpactStyle) {
+        Self.impactGenerator(for: style).prepare()
+    }
+    
+    private func performImpactHaptic(style: FeedbackDescription.ImpactStyle, intensity: Double) {
+        Self.impactGenerator(for: style).impactOccurred(intensity: intensity)
+    }
+    
+}
+
+extension HapticFeedbackGenerator {
     private func performNotificationHaptic(type: FeedbackDescription.NotificationType) {
         let feedbackType = UINotificationFeedbackGenerator.FeedbackType(type)
         Self.notificationFeedbackGenerator.notificationOccurred(feedbackType)
