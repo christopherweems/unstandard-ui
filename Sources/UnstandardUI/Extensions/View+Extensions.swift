@@ -70,6 +70,35 @@ extension View {
 }
 
 
+// MARK: -
+
+@available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
+extension View {
+    public func safeAreaInset(top: CGFloat = 0, leading: CGFloat = 0, bottom: CGFloat = 0, trailing: CGFloat = 0) -> some View {
+        let insets = EdgeInsets(top: top, leading: leading, bottom: bottom, trailing: trailing)
+        return self.safeAreaInset(insets)
+    }
+    
+    @ViewBuilder public func safeAreaInset(_ insets: EdgeInsets) -> some View {
+        self
+            .safeAreaInset(edge: .top) {
+                Spacer().frame(height: insets.top)
+            }
+            .safeAreaInset(edge: .leading) {
+                Spacer().frame(width: insets.leading)
+            }
+            .safeAreaInset(edge: .trailing) {
+                Spacer().frame(width: insets.trailing)
+            }
+            .safeAreaInset(edge: .bottom) {
+                Spacer().frame(height: insets.bottom)
+            }
+    }
+    
+}
+
+
+
 // MARK: - Type Erasure
 
 extension View {
