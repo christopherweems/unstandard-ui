@@ -36,6 +36,19 @@ extension UnitPoint {
 }
 
 extension UnitPoint {
+    @_disfavoredOverload
+    public static func *(lhs: Self, rhs: CGFloat) -> CGPoint {
+        .init(x: lhs.x * rhs, y: lhs.y * rhs)
+    }
+    
+    @_disfavoredOverload
+    public static func *(lhs: Self, rhs: CGFloat) -> CGSize {
+        .init(width: lhs.x * rhs, height: lhs.y * rhs)
+    }
+    
+}
+
+extension UnitPoint {
     public var normalized: Self {
         guard length != 0 else { return .zero }
         let scale = 1 / length
