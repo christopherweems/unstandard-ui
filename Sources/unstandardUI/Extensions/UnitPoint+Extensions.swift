@@ -46,6 +46,14 @@ extension UnitPoint {
         .init(width: lhs.x * rhs, height: lhs.y * rhs)
     }
     
+    public static func *(_ point: UnitPoint, size: CGSize) -> CGSize {
+        .init(width: point.x * size.width, height: point.y * size.height)
+    }
+    
+    public static func *(_ size: CGSize, point: UnitPoint) -> CGSize {
+        point * size
+    }
+    
 }
 
 extension UnitPoint {
