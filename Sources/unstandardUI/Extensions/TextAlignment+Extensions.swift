@@ -31,4 +31,28 @@ extension TextAlignment {
         }
     }
     
+    @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
+    public func along(_ verticalEdge: VerticalEdge) -> UnitPoint {
+        switch (verticalEdge, self) {
+        case (.top, .leading):
+            return .topLeading
+            
+        case (.top, .center):
+            return .top
+            
+        case (.top, .trailing):
+            return .topTrailing
+            
+        case (.bottom, .leading):
+            return .bottomLeading
+            
+        case (.bottom, .center):
+            return .bottom
+            
+        case (.bottom, .trailing):
+            return .bottomTrailing
+            
+        }
+    }
+    
 }
