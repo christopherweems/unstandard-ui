@@ -29,7 +29,7 @@ extension GeometryProxy {
 extension GeometryProxy {
     public func frame(_in coordinateSpace: CoordinateSpace, ignoringSafeAreaInsets: Bool) -> CGRect {
         var frame = self.frame(in: coordinateSpace)
-        guard ignoringSafeAreaInsets else { return frame }
+        guard !ignoringSafeAreaInsets else { return frame }
         
         frame.origin.x += self.safeAreaInsets.leading
         frame.origin.y += self.safeAreaInsets.top
