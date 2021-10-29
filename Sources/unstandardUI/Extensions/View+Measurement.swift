@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+
+// MARK: - View Size
+
 extension View {
     public func measuring(size: Binding<CGSize>) -> some View {
         self.modifier(SizeModifier(measuredSize: size))
@@ -40,6 +43,60 @@ fileprivate struct SizeModifier: ViewModifier {
             .onPreferenceChange(SizePreferenceKey.self) {
                 measuredSize = $0
             }
+    }
+    
+}
+
+// MARK: - View Frame
+
+extension View {
+    @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
+    public func measuring(frame: Binding<CGRect>,
+                          in coordinateSpace: CoordinateSpace = .local,
+                          ignoringSafeAreaInsets: Bool = false) -> some View {
+        func measureFrame(geometry: GeometryProxy) {
+            DispatchQueue.main.async {
+                frame.wrappedValue = geometry.frame(_in: coordinateSpace,
+                                                    ignoringSafeAreaInsets: ignoringSafeAreaInsets)
+            }
+        }
+        
+        return self.background {
+            GeometryReader { geometry in
+                Color.clear
+                    .onAppear { measureFrame(geometry: geometry) }
+                    .onChange(of: geometry.nonInsetSize) { _ in measureFrame(geometry: geometry) }
+            }
+        }
+    }
+    
+}
+
+
+// MARK: - Window Size
+
+extension View {
+    public func measuring(windowSize: Binding<CGSize?>) -> some View {
+        self.background(WindowMeasurementView(measuredSize: windowSize))
+    }
+    
+}
+
+fileprivate struct WindowMeasurementView: UIViewRepresentable {
+    @Binding var measuredSize: CGSize?
+    
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView()
+        view.isUserInteractionEnabled = false
+        view.backgroundColor = .clear
+        
+        return view
+    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {
+        DispatchQueue.main.async {
+            measuredSize = uiView.window?.bounds.size
+        }
     }
     
 }
