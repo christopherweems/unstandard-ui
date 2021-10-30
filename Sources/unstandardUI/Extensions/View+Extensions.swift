@@ -70,6 +70,21 @@ extension View {
 }
 
 
+// MARK: - `View.onRecalculate { .. }`
+
+@available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
+extension View {
+    public func onRecalculate(_ update: @escaping () -> Void) -> some View {
+        self.background {
+            Canvas { _, _ in
+                update()
+            }
+        }
+    }
+    
+}
+
+
 // MARK: -
 
 extension View {
