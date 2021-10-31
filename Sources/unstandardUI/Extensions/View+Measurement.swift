@@ -75,6 +75,8 @@ extension View {
 
 // MARK: - Window Size
 
+#if os(iOS) || os(tvOS)
+
 extension View {
     public func measuring(windowSize: Binding<CGSize?>) -> some View {
         self.background(WindowMeasurementView(measuredSize: windowSize))
@@ -100,3 +102,5 @@ fileprivate struct WindowMeasurementView: UIViewRepresentable {
     }
     
 }
+
+#endif
