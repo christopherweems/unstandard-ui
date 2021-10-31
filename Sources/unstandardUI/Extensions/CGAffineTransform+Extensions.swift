@@ -5,8 +5,14 @@
 //  Created by Christopher Weems on 10/22/21.
 //
 
-import struct CoreGraphics.CGAffineTransform
-import struct CoreGraphics.CGRect
+import CoreGraphics
+
+extension CGAffineTransform {
+    public static func scale(width: CGFloat, height: CGFloat) -> Self {
+        .init(scaleX: width, y: height)
+    }
+    
+}
 
 extension CGAffineTransform {
     public static func scalingUnitRect(to frame: CGRect) -> CGAffineTransform {
