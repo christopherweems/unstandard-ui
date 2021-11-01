@@ -15,13 +15,13 @@ extension Image {
         
     }
     
-    public init(named: Name) {
+    public init(named: Name, bundle: Bundle? = nil) {
         switch named {
         case let .system(name):
             self.init(systemName: name)
             
         case let .asset(name):
-            self.init(name)
+            self.init(name, bundle: bundle)
             
         }
     }
