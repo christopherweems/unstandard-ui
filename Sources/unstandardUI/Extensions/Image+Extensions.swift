@@ -27,3 +27,12 @@ extension Image {
     }
     
 }
+
+
+@available(macOS 11, iOS 14, tvOS 14, watchOS 7, *)
+extension Label where Title == Text, Icon == Image {
+    public init<S>(_ title: S, imageNamed imageName: Image.Name, bundle: Bundle? = nil) where S : StringProtocol {
+        self = Label(title: { Text(title) }, icon: { Image(named: imageName, bundle: bundle) })
+    }
+    
+}
