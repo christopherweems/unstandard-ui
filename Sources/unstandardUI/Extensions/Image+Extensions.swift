@@ -11,16 +11,16 @@ import SwiftUI
 extension Image {
     public enum Name {
         case system(name: String)
-        case asset(name: String)
+        case asset(name: String, bundle: Bundle? = nil)
         
     }
     
-    public init(named: Name, bundle: Bundle? = nil) {
+    public init(named: Name) {
         switch named {
         case let .system(name):
             self.init(systemName: name)
             
-        case let .asset(name):
+        case let .asset(name, bundle):
             self.init(name, bundle: bundle)
             
         }
@@ -31,8 +31,8 @@ extension Image {
 
 @available(macOS 11, iOS 14, tvOS 14, watchOS 7, *)
 extension Label where Title == Text, Icon == Image {
-    public init<S>(_ title: S, imageNamed imageName: Image.Name, bundle: Bundle? = nil) where S : StringProtocol {
-        self = Label(title: { Text(title) }, icon: { Image(named: imageName, bundle: bundle) })
+    public init<S>(_ title: S, imageNamed imageName: Image.Name) where S : StringProtocol {
+        self = Label(title: { Text(title) }, icon: { Image(named: imageName) })
     }
     
 }
