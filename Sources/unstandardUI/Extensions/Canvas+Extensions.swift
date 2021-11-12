@@ -16,8 +16,14 @@ extension Canvas {
         self.init(opaque: opaque, colorMode: colorMode,
                   rendersAsynchronously: rendersAsynchronously) { context, size in
             let canvasProxy = CanvasProxy(size: size)
-            context.transform = transform(canvasProxy)
-            renderer(&context, size)
+            let transform = transform(canvasProxy)
+            let transformedSize = CGRect(origin: .zero, size: size)
+                .applying(transform)
+                .size
+            
+            context.transform = transform
+            
+            renderer(&context, transformedSize)
         }
         
     }
