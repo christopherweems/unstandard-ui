@@ -5,7 +5,7 @@
 //  Created by Christopher Weems on 11/12/21.
 //
 
-import Foundation
+import SwiftUI
 
 extension CGSize {
     public static var infinite: CGSize {
