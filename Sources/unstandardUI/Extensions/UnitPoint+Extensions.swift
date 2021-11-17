@@ -68,3 +68,41 @@ extension UnitPoint {
     }
     
 }
+
+extension UnitPoint {
+    public init(horizontalAlignment: HorizontalAlignment, verticalAlignment: VerticalAlignment) {
+        self.init(alignment: .init(horizontal: horizontalAlignment, vertical: verticalAlignment))
+    }
+    
+    public init(alignment: Alignment) {
+        switch alignment {
+        case .trailing:
+            self = .trailing
+            
+        case .topTrailing:
+            self = .topTrailing
+            
+        case .top:
+            self = .top
+            
+        case .topLeading:
+            self = .topLeading
+            
+        case .leading:
+            self = .leading
+            
+        case .bottomLeading:
+            self = .bottomLeading
+            
+        case .bottom:
+            self = .bottom
+            
+        case .bottomTrailing:
+            self = .bottomTrailing
+            
+        default:
+            fatalError("Unknown alignment: \(alignment)")
+        }
+    }
+    
+}
