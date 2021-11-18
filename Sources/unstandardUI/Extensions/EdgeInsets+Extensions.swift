@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Resultto
 
 extension EdgeInsets {
     public static let zero = EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
@@ -63,6 +64,20 @@ extension EdgeInsets {
     @available(macOS 12, iOS 15, tvOS 15, watchOS 8, *)
     public func mirrored(across _: HorizontalEdge) -> EdgeInsets {
         return .init(top: top, leading: trailing, bottom: bottom, trailing: leading)
+    }
+    
+}
+
+
+// MARK: - Properties
+
+extension EdgeInsets {
+    @AnyTrue public var isNonZero: Bool {
+        top != 0
+        leading != 0
+        trailing != 0
+        bottom != 0
+        
     }
     
 }
