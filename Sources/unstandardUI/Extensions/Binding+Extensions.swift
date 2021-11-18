@@ -20,6 +20,21 @@ extension Binding {
     
 }
 
+
+// MARK: -
+
+extension Binding {
+    public func forceUnwrapped<Wrapped>() -> Binding<Wrapped> where Value == Optional<Wrapped> {
+        .init {
+            self.wrappedValue!
+        } set: {
+            self.wrappedValue = $0
+        }
+    }
+    
+}
+
+
 // MARK: - Detour
 
 extension Binding {
