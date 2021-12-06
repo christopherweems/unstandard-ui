@@ -26,7 +26,8 @@ let package = Package(
         
     ],
     dependencies: [
-        .package(url: "https://github.com/christopherweems/unstandard.git", from: "0.4.3"),
+//        .package(url: "https://github.com/christopherweems/unstandard.git", from: "0.4.3"),
+        .package(url: "https://github.com/christopherweems/unstandard.git", branch: "main"),
         .package(url: "https://github.com/christopherweems/Resultto.git", from: "0.2.1"),
         
     ],
