@@ -13,6 +13,10 @@ extension UnitPoint {
 }
 
 extension UnitPoint {
+    public static func +=(lhs: inout Self, rhs: Self) {
+        lhs = lhs + rhs
+    }
+    
     public static func +(_ lhs: Self, _ rhs: Self) -> Self {
         .init(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
     }
