@@ -24,6 +24,17 @@ extension UnitPoint {
 }
 
 extension UnitPoint {
+    public static func +(lhs: UnitPoint, rhs: CGPoint) -> UnitPoint {
+        lhs + UnitPoint(rhs)
+    }
+    
+    public static func +(lhs: UnitPoint, rhs: CGSize) -> UnitPoint {
+        lhs + UnitPoint(rhs)
+    }
+    
+}
+
+extension UnitPoint {
     public static func *(multiplier: UnitPoint.Unit, point: UnitPoint) -> UnitPoint {
         precondition((-1...1).contains(multiplier), "UnitPoint multiplier must be within (-1...1)")
         return .init(x: point.x * multiplier, y: point.y * multiplier)
@@ -108,6 +119,10 @@ extension UnitPoint {
 }
 
 extension UnitPoint {
+    public init(_ point: CGPoint) {
+        self.init(x: point.x, y: point.y)
+    }
+    
     public init(_ size: CGSize) {
         self.init(x: size.width, y: size.height)
     }
