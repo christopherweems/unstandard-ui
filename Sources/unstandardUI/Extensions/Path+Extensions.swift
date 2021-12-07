@@ -34,9 +34,19 @@ extension Path {
             )
     }
     
+    public mutating func transform(scalingUnitPathBy scale: CGFloat) {
+        self = self.applying(CGAffineTransform(scaleX: scale, y: scale))
+    }
+    
     public func applying(transformScalingUnitPathTo frame: CGRect) -> Path {
         var new = self
         new.transform(scalingUnitPathTo: frame)
+        return new
+    }
+    
+    public func applying(transformScalingUnitPathBy scale: CGFloat) -> Path {
+        var new = self
+        new.transform(scalingUnitPathBy: scale)
         return new
     }
     
