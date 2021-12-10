@@ -12,6 +12,10 @@ extension CGAffineTransform {
         .init(scaleX: width, y: height)
     }
     
+    public mutating func scale(byX x: CGFloat, y: CGFloat) {
+        self = self.scaledBy(x: x, y: y)
+    }
+    
 }
 
 extension CGAffineTransform {
