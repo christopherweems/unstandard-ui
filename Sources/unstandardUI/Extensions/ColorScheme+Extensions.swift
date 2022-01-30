@@ -34,3 +34,20 @@ extension ColorScheme: RawRepresentable {
     }
     
 }
+
+
+// MARK: - Toggle
+
+extension ColorScheme {
+    public mutating func _toggle() {
+        switch self {
+        case .dark:
+            self = .light
+            
+        case .light, _:
+            self = .dark
+            
+        }
+    }
+    
+}
