@@ -39,3 +39,11 @@ extension GeometryProxy {
     }
     
 }
+
+extension GeometryProxy {
+    /// Only reliable for a view spanning the entire window.
+    public var _isHomeButtonDevice: Bool {
+        safeAreaInsets.bottom == 0
+    }
+    
+}
