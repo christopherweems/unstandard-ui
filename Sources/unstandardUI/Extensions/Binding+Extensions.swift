@@ -72,7 +72,7 @@ extension Binding where Value == Bool {
 //
 
 extension Binding {
-    public init<Item, ID>(_ base: Binding<Item?>, id: KeyPath<Item, ID>) where Value == Identified<Item, ID>?, ID : Hashable {
+    public init<Item, ID>(_ base: Binding<Item?>, id: KeyPath<Item, ID>) where Value == Identified<Item, ID>? {
         self.init {
             guard let wrappedValue = base.wrappedValue else { return nil }
             return Identified(item: wrappedValue, id: id)
@@ -82,7 +82,7 @@ extension Binding {
 
     }
     
-    public init<Item, ID>(id: KeyPath<Item, ID>, get getter: @escaping () -> Item?, set setter: @escaping (Item?) -> Void) where Value == Identified<Item, ID>?, ID : Hashable {
+    public init<Item, ID>(id: KeyPath<Item, ID>, get getter: @escaping () -> Item?, set setter: @escaping (Item?) -> Void) where Value == Identified<Item, ID>? {
         self.init {
             Identified(item: getter(), id: id)
         } set: {
