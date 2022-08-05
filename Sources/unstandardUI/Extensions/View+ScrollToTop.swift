@@ -36,7 +36,7 @@ fileprivate struct ScrollToTopRecognitionView: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .background(_ScrollToTopView(action: action))
+            .background(_ScrollToTopView(action: action).disabled(true))
     }
     
 }
