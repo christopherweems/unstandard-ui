@@ -24,6 +24,17 @@ extension Binding {
 // MARK: -
 
 extension Binding {
+    public func nonNil<WrappedValue, Property>(
+        _ propertyKeyPath: WritableKeyPath<WrappedValue, Property>
+    ) -> Binding<Property?> where Value == Optional<WrappedValue> {
+        return .init {
+            self.wrappedValue?[keyPath: propertyKeyPath]
+        } set: { newValue in
+            guard let newValue else { assertionFailure(); return }
+            self.wrappedValue?[keyPath: propertyKeyPath] = newValue
+        }
+    }
+    
     public func forceUnwrapped<Wrapped>() -> Binding<Wrapped> where Value == Optional<Wrapped> {
         .init {
             self.wrappedValue!
