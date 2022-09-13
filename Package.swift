@@ -1,6 +1,4 @@
 // swift-tools-version:5.7
-// The swift-tools-version declares the minimum version of Swift required to build this package.
-
 import PackageDescription
 
 let package = Package(
@@ -27,7 +25,7 @@ let package = Package(
     ],
     dependencies: [
 //        .package(url: "https://github.com/christopherweems/unstandard.git", from: "0.5.0"),
-        .package(url: "https://github.com/christopherweems/unstandard.git", branch: "five.seven"),
+        .package(url: "https://github.com/christopherweems/unstandard.git", branch: "main"),
         .package(url: "https://github.com/christopherweems/Resultto.git", from: "0.2.2"),
         
     ],
