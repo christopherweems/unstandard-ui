@@ -11,7 +11,7 @@ import struct CoreGraphics.CGFloat
 @_exported import struct unstandard.Identified
 
 extension Binding {
-    public static func ??<T>(lhs: Self, rhs: T) -> Binding<T> where Value == Optional<T> {
+    public static func ??<T>(lhs: Self, rhs: T) -> Binding<T> where Value == Optional<T>, T : Sendable {
         .init(
             get: { lhs.wrappedValue ?? rhs },
             set: { lhs.wrappedValue = $0 }
