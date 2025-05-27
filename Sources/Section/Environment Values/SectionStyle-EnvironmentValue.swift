@@ -8,7 +8,7 @@
 import SwiftUI
 
 fileprivate struct _SectionStyle: EnvironmentKey {
-    static var defaultValue = AnySectionStyle(PlainSectionStyle())
+    static nonisolated(unsafe) var defaultValue = AnySectionStyle(PlainSectionStyle())
 }
 
 extension EnvironmentValues {

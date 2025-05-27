@@ -18,7 +18,7 @@ extension View {
 }
 
 fileprivate struct SizePreferenceKey: PreferenceKey {
-    static var defaultValue: CGSize = .zero
+    fileprivate static nonisolated(unsafe) var defaultValue: CGSize = .zero
 
     static func reduce(value: inout CGSize, nextValue: () -> CGSize) {
         value = nextValue()

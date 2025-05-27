@@ -58,8 +58,10 @@ public extension Section where Style == PlainSectionStyle, Header == Text, Foote
     
 }
 
-public extension Section {
-    func style<Style: SectionStyle>(_ style: Style) -> Section<Style, Header, Content, Footer> {
+extension Section {
+    public func style<_Style: SectionStyle>(
+        _ style: _Style,
+    ) -> Section<_Style, Header, Content, Footer> {
         .init(style: style, header: self.header, footer: self.footer, content: self.content)
     }
     
@@ -91,8 +93,9 @@ public struct SectionConfiguration {
     
 }
 
-public extension SectionConfiguration {
-    init<Header: View, Footer: View>(header: Header, footer: Footer) {
+extension SectionConfiguration {
+    @MainActor
+    public init<Header: View, Footer: View>(header: Header, footer: Footer) {
         self = .init(header: Self.Header(header), footer: Self.Footer(footer))
         
     }
