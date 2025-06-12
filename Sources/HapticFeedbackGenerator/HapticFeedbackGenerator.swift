@@ -9,7 +9,8 @@
 import UIKit
 import Resultto
 
-public struct HapticFeedbackGenerator {
+@MainActor
+public struct HapticFeedbackGenerator: Sendable {
     private static let mediumImpactGenerator = UIImpactFeedbackGenerator(style: .medium)
     private static let lightImpactGenerator = UIImpactFeedbackGenerator(style: .light)
     private static let heavyImpactGenerator = UIImpactFeedbackGenerator(style: .heavy)

@@ -9,7 +9,7 @@
 import SwiftUI
 
 internal struct HapticFeedbackGeneratorEnvironmentKey: EnvironmentKey {
-    static var defaultValue = HapticFeedbackGenerator()
+    static let defaultValue = HapticFeedbackGenerator()
     
 }
 
