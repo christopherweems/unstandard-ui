@@ -65,7 +65,7 @@ extension View {
             GeometryReader { geometry in
                 Color.clear
                     .onAppear { measureFrame(geometry: geometry) }
-                    .onChange(of: geometry.nonInsetSize) { _ in measureFrame(geometry: geometry) }
+                    .onChange(of: geometry.nonInsetSize) { measureFrame(geometry: geometry) }
             }
         }
     }

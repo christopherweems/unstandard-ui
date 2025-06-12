@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension ColorScheme: RawRepresentable {
+extension ColorScheme: @retroactive RawRepresentable {
     public var rawValue: String {
         switch self {
         case .light:

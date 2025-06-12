@@ -86,7 +86,7 @@ extension EdgeInsets {
 // MARK: - Hashable conformance
 
 
-extension EdgeInsets : Hashable {
+extension EdgeInsets : @retroactive Hashable {
     public func hash(into hasher: inout Hasher) {
         trailing.hash(into: &hasher)
         top.hash(into: &hasher)

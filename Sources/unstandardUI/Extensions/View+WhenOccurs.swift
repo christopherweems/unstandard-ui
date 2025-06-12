@@ -31,7 +31,7 @@ internal struct WhenViewModifier: ViewModifier {
                 action()
                 hasOccurred = true
             }
-            .onChange(of: predicate == true && !hasOccurred) { _ in
+            .onChange(of: predicate == true && !hasOccurred) {
                 guard !hasOccurred else { return }
                 action()
             }

@@ -24,18 +24,20 @@ extension Binding {
 // MARK: -
 
 extension Binding {
-    public func nonNil<WrappedValue, Property>(
+    public func nonNil<WrappedValue : Sendable, Property>(
         _ propertyKeyPath: WritableKeyPath<WrappedValue, Property>
     ) -> Binding<Property?> where Value == Optional<WrappedValue> {
+        nonisolated(unsafe) let _propertyKeyPath = propertyKeyPath
+        
         return .init {
-            self.wrappedValue?[keyPath: propertyKeyPath]
+            self.wrappedValue?[keyPath: _propertyKeyPath]
         } set: { newValue in
             guard let newValue else { assertionFailure(); return }
-            self.wrappedValue?[keyPath: propertyKeyPath] = newValue
+            self.wrappedValue?[keyPath: _propertyKeyPath] = newValue
         }
     }
     
-    public func forceUnwrapped<Wrapped>() -> Binding<Wrapped> where Value == Optional<Wrapped> {
+    public func forceUnwrapped<Wrapped : Sendable>() -> Binding<Wrapped> where Value == Optional<Wrapped> {
         .init {
             self.wrappedValue!
         } set: {
@@ -49,8 +51,10 @@ extension Binding {
 // MARK: - Detour
 
 extension Binding {
-    public func detour(assignmentTo value: Value,
-                       with detourHandler: @escaping (Value) -> Void) -> Self where Value : Equatable {
+    public func detour(
+        assignmentTo value: Value,
+        with detourHandler: @escaping @Sendable (Value) -> Void,
+    ) -> Self where Value : Equatable & Sendable {
         .init {
             self.wrappedValue
             
@@ -83,19 +87,30 @@ extension Binding where Value == Bool {
 //
 
 extension Binding {
-    public init<Item, ID>(_ base: Binding<Item?>, id: KeyPath<Item, ID>) where Value == Identified<Item, ID>? {
+    public init<Item : Sendable, ID : Sendable>(
+        _ base: Binding<Item?>,
+        id: KeyPath<Item, ID>,
+    ) where Value == Identified<Item, ID>? {
+        nonisolated(unsafe) let _id = id
+        
         self.init {
             guard let wrappedValue = base.wrappedValue else { return nil }
-            return Identified(item: wrappedValue, id: id)
+            return Identified(item: wrappedValue, id: _id)
         } set: {
             base.wrappedValue = $0?.item
         }
 
     }
     
-    public init<Item, ID>(id: KeyPath<Item, ID>, get getter: @escaping () -> Item?, set setter: @escaping (Item?) -> Void) where Value == Identified<Item, ID>? {
+    public init<Item, ID : Sendable>(
+        id: KeyPath<Item, ID>,
+        get getter: @escaping @Sendable () -> Item?,
+        set setter: @escaping @Sendable (Item?) -> Void,
+    ) where Value == Identified<Item, ID>? {
+        nonisolated(unsafe) let _id = id
+        
         self.init {
-            Identified(item: getter(), id: id)
+            Identified(item: getter(), id: _id)
         } set: {
             setter($0?.item)
         }

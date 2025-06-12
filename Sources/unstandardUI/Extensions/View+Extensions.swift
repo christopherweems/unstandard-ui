@@ -73,7 +73,7 @@ extension View {
 // MARK: - `View.onRecalculate { .. }`
 
 extension View {
-    public func onRecalculate(_ update: @escaping () -> Void) -> some View {
+    public func onRecalculate(_ update: @escaping @Sendable () -> Void) -> some View {
         DispatchQueue.main.async(execute: update)
         return self
     }
